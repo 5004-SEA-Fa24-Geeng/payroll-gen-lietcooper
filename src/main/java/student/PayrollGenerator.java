@@ -69,7 +69,19 @@ public final class PayrollGenerator {
         // as it is invalid, but if is 0, you still generate a paystub, but the amount is 0.
 
         //YOUR CODE HERE
-      
+        for (int i = 0; i < timeCardList.size();i++) {
+            ITimeCard timeCard = timeCardList.get(i);
+            if (timeCard != null) {
+               for (int j = 0; j < employees.size(); j++) {
+                   IEmployee employee = employees.get(j);
+                   if (employee != null) {
+                       if (employee.getID().equals(timeCard.getEmployeeID())) {
+                           payStubs.add(employee.runPayroll(timeCard.getHoursWorked()));
+                       }
+                   }
+               }
+            }
+        }
 
          // now save out employees to a new file
 

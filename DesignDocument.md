@@ -8,6 +8,83 @@ This document is meant to provide a tool for you to demonstrate the design proce
 
 Place your class diagram below. Make sure you check the fil in the browser on github.com to make sure it is rendering correctly. If it is not, you will need to fix it. As a reminder, here is a link to tools that can help you create a class diagram: [Class Resources: Class Design Tools](https://github.com/CS5004-khoury-lionelle/Resources?tab=readme-ov-file#uml-design-tools)
 
+```mermaid
+---
+title:
+---
+classDiagram
+    direction TB
+    PayrollGenerator
+    IEmployee <|-- Employee: implements
+    <<abstract>> Employee
+    Employee <|-- SalaryEmployee: extends
+    Employee <|-- HourlyEmployee: extends
+    <<interface>> IEmployee
+    ITimeCard <|-- TimeCard: implements
+    <<interface>> ITimeCard
+    IPayStub <|-- PayStub: implements
+    <<interface>> IPayStub
+    
+
+
+    class Builder {
+        -Builder()
+        +buildEmployeeFromCSV(String csv)$: IEmployee
+        +buildTimeCardFromCSV(String csv)$: ITimeCard
+    }
+    class FileUtil {
+        +String EMPLOYEE_HEADER$
+        +String PAY_STUB_HEADER$
+        -FIleUtil()
+        +readFileToList(String file)$: List~String~
+        +writeFile(String outFile, List~String~ lines)$: void
+        +writeFile(String outFIle, List~String~ lines, boolean backup)$: void
+    }
+    class PayrollGenerator {
+        +main(String[] args)$: void
+    }
+    class IEmployee{
+        getName(): String
+        getID(): String
+        getPayRate(): double
+        getEmployeeType(): String
+        getYTDEarnings(): double
+        getYTDTaxPaid(): double
+        getPretaxDeduction(): double
+        runPayroll(double hoursWorked): IPayStub
+        toCSV(): String
+    }
+    class Employee {
+        #String name
+        #String ID
+        #double payRate
+        #String employeeType
+        #double YTDEarnings
+        #double YTDTaxPaid
+        #double PretaxDeductions
+ }
+    class HourlyEmployee {
+        
+    }
+    class SalaryEmployee {
+        
+    }
+    class ITimeCard {
+        getEmployeeID(): String
+        getHoursWorked(): double
+    }
+    class TimeCard {
+        
+    }
+    class IPayStub {
+        getPay(): double
+        getTaxesPaid(): double
+        toCSV(): String
+    }
+    class PayStub {
+        
+    }
+```
 
 
 
@@ -28,8 +105,14 @@ You should feel free to number your brainstorm.
 
 1. Test that the `Employee` class properly returns `name` from `getName()`
 2. Test that the `Employee` class properly returns `id` from `getId()`
-3. continue to add your brainstorm here (you don't need to super formal - this is a brainstorm) - yes, you can change the bullets above to something that fits your design.
-
+3. Test that the `Employee` class properly returns `payRate` from `getPayRate()`
+4. Test that the `Employee` class properly returns `employeeType` from `getEmployeeType()`
+5. Test that the `Employee` class properly returns `YTDEarnings` from `getYTDEarnings()`
+6. Test that the `Employee` class properly returns `pretaxDeductions` from `getPretacDeductions()`
+7. Test that the `Employee` class properly returns CSV String from `toCSV()`
+8. Test that the `TimeCard` class properly returns `employeeID` from `getEmPloyeeID()`
+9. Test that the `Employee` class properly returns `hoursWorked` from `getHoursWorked()`
+10. Test that the `PayStub` class properly returns `name` from `getName()`
 
 
 ## (FINAL DESIGN): Class Diagram

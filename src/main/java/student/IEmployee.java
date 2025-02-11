@@ -89,10 +89,10 @@ public interface IEmployee {
      * 
      * Final net pay is calculated as pay - pretaxDeductions - taxes.
      * 
-     * All numbers (across all methods) are rounded to the nearest cent. (2 decimal places)
+     * All numbers (across all methods) are rounded to the· nearest cent. (2 decimal places)
      * 
      * SUGGESTION: You may want to use BigDecimal for the calculations to avoid floating point errors.
-     * SUGGESTION: You may want to create an protected abstract calculateGrossPay(double hoursWorked) 
+     * SUGGESTION: You may want to create a protected abstract calculateGrossPay(double hoursWorked)
      * method to calculate the gross pay for the pay period, as runPayroll is exactly
      * the same for both SalaryEmployee and HourlyEmployee, but calculateGrossPay is different.
      * 
@@ -101,7 +101,7 @@ public interface IEmployee {
      * @return the pay stub for the current pay period
      * 
      */
-    IPayStub runPayroll(double hoursWorked);
+     IPayStub runPayroll(double hoursWorked);
 
 
 
