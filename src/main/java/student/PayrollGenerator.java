@@ -69,17 +69,42 @@ public final class PayrollGenerator {
         // as it is invalid, but if is 0, you still generate a paystub, but the amount is 0.
 
         //YOUR CODE HERE
-        for (int i = 0; i < timeCardList.size();i++) {
-            ITimeCard timeCard = timeCardList.get(i);
+        for (ITimeCard timeCard : timeCardList) {
             if (timeCard != null) {
-               for (int j = 0; j < employees.size(); j++) {
-                   IEmployee employee = employees.get(j);
-                   if (employee != null) {
-                       if (employee.getID().equals(timeCard.getEmployeeID())) {
-                           payStubs.add(employee.runPayroll(timeCard.getHoursWorked()));
-                       }
-                   }
-               }
+                for (int i = 0; i < employees.size(); i++) {
+                    IEmployee employee = employees.get(i);
+                    if (employee != null) {
+                        if (employee.getID().equals(timeCard.getEmployeeID())) {
+                            // add to paystubs
+                            IPayStub payStub = employee.runPayroll(timeCard.getHoursWorked());
+                            payStubs.add(payStub);
+
+                            // update employees.csv
+                            String type = employee.getEmployeeType();
+                            double updatedYTDEarnings = employee.getYTDEarnings() + payStub.getPay();
+                            double updatedYTDTaxesPaid = employee.getYTDTaxesPaid() + payStub.getTaxesPaid();
+                            if (type.equals("HOURLY")) {
+                                employees.set(i, new HourlyEmployee(
+                                        employee.getName(),
+                                        employee.getID(),
+                                        employee.getPayRate(),
+                                        updatedYTDEarnings,
+                                        updatedYTDTaxesPaid,
+                                        employee.getPretaxDeductions()
+                                ));
+                            } else {
+                                employees.set(i, new SalaryEmployee(
+                                        employee.getName(),
+                                        employee.getID(),
+                                        employee.getPayRate(),
+                                        updatedYTDEarnings,
+                                        updatedYTDTaxesPaid,
+                                        employee.getPretaxDeductions()
+                                ));
+                            }
+                        }
+                    }
+                }
             }
         }
 

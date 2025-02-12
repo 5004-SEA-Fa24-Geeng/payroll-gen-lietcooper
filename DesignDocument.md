@@ -58,13 +58,13 @@ classDiagram
         toCSV(): String
     }
     class Employee {
-        #String name
-        #String ID
-        #double payRate
-        #String employeeType
-        #double YTDEarnings
-        #double YTDTaxPaid
-        #double PretaxDeductions
+        -String name
+        -String ID
+        -double payRate
+        -String employeeType
+        -double YTDEarnings
+        -double YTDTaxPaid
+        -double PretaxDeductions
         #calculateGrossPay(double hoursWorked): double
  }
     class HourlyEmployee {

@@ -5,13 +5,13 @@ package student;
  */
 public class HourlyEmployee extends Employee{
     /** set the employee type to HOURLY*/
-    protected String employeeType = "HOURLY";
+    private String employeeType = "HOURLY";
 
     /** the start hours of overtime.*/
-    private final static double OVERTIME = 40;
+    protected final static double OVERTIME = 40;
 
     /** the coefficient in calculating the pay for hourly employee*/
-    private final static double PAYCOEFFICIENT = 1.5;
+    protected final static double PAYCOEFFICIENT = 1.5;
 
 
     /**

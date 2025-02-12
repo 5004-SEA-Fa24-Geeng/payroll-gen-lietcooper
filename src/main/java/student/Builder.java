@@ -36,7 +36,7 @@ public final class Builder {
 
         // if any wrong double value input, return null
         for (int i = 3; i <= 6; i++) {
-            if (strToDouble(employee[i]) < 0) return null;
+            if (strToDouble(employee[i]) < 0) { return null; }
         }
 
         if (employee[0].equals("HOURLY")) {
@@ -72,13 +72,13 @@ public final class Builder {
     /**
      * convert string into double.
      * if the str is not a double, return -1.0
-     * @param str, the string
+     * @param str the string
      * @return double from the string.
      */
     public static double strToDouble(String str) {
         try {
             Double.parseDouble(str);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.err.println("The value is not a double! Get -1.0 instead.");
             return -1.0;
         }

@@ -6,7 +6,7 @@ package student;
  */
 public class SalaryEmployee extends Employee{
     /** set the employee type to SALARY.*/
-    protected String employeeType = "SALARY";
+    private String employeeType = "SALARY";
 
     /** division for the pay of the salary employees.*/
     protected final static double PAYDIVIDE = 24;
