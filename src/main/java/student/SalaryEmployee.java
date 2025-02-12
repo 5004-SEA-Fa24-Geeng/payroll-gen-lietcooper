@@ -4,7 +4,7 @@ package student;
 /**
  * A class for salary employees.
  */
-public class SalaryEmployee extends Employee{
+public class SalaryEmployee extends Employee {
     /** set the employee type to SALARY.*/
     private String employeeType = "SALARY";
 
@@ -42,5 +42,13 @@ public class SalaryEmployee extends Employee{
      */
     protected double calculateGrossPay(double hoursWorked) {
         return getPayRate() / payDivide;
+    }
+
+    /**
+     * get the pay divide.
+     * @return payDivide
+     */
+    public static double getPayDivide() {
+        return payDivide;
     }
 }

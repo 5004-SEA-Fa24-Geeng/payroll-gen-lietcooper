@@ -72,7 +72,7 @@ class EmployeeTest {
     void calculateGrossPay() {
         double hours = 40;
         double expectedHourlyGrossPay = hours * hourlyEmployee.getPayRate();
-        double expectedSalaryGrossPay = salaryEmployee.getPayRate() / SalaryEmployee.PAYDIVIDE;
+        double expectedSalaryGrossPay = salaryEmployee.getPayRate() / SalaryEmployee.getPayDivide();
         assertEquals(Builder.strToDouble(Double.toString(expectedHourlyGrossPay)),
                 Builder.strToDouble(Double.toString(hourlyEmployee.calculateGrossPay(40))));
         assertEquals(Builder.strToDouble(Double.toString(expectedSalaryGrossPay)),

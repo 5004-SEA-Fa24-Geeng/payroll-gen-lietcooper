@@ -13,7 +13,7 @@ public class TimeCard implements ITimeCard {
     /**
      * constructor for time card.
      * @param id employee's id
-     * @param hoursWorked, employee's worked hours
+     * @param hoursWorked employee's worked hours
      */
     public TimeCard(String id, double hoursWorked) {
         this.id = id;

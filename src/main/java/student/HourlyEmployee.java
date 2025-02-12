@@ -3,7 +3,7 @@ package student;
 /**
  * A class for hourly employees.
  */
-public class HourlyEmployee extends Employee{
+public class HourlyEmployee extends Employee {
     /** set the employee type to HOURLY.*/
     private String employeeType = "HOURLY";
 
@@ -44,7 +44,7 @@ public class HourlyEmployee extends Employee{
      * @return the gross pay
      */
     protected double calculateGrossPay(double hoursWorked) {
-        return (hoursWorked <=overtime
+        return (hoursWorked <= overtime
                 ? getPayRate() * hoursWorked : getPayRate() * (payCoefficient * hoursWorked - 0.5 * overtime));
     }
 }
