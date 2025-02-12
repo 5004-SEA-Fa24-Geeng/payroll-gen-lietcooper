@@ -5,18 +5,18 @@ package student;
  */
 public class TimeCard implements ITimeCard{
     /** employee's id.*/
-    private final String ID;
+    private final String id;
 
     /** employee's worked hours.*/
     private final double hoursWorked;
 
     /**
      * constructor for time card.
-     * @param ID, employee's id
+     * @param ID employee's id
      * @param hoursWorked, employee's worked hours
      */
     public TimeCard(String ID, double hoursWorked) {
-        this.ID = ID;
+        this.id = ID;
         this.hoursWorked = hoursWorked;
     }
 
@@ -25,12 +25,16 @@ public class TimeCard implements ITimeCard{
      *
      * @return the id of the employee
      */
-    public String getEmployeeID() {return ID;}
+    public String getEmployeeID() {
+        return id;
+    }
 
     /**
      * get the worked hours of the employee.
      *
      * @return hoursWorked
      */
-    public double getHoursWorked() {return hoursWorked;}
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
 }

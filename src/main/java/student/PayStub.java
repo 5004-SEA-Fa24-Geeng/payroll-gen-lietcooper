@@ -41,14 +41,18 @@ public class PayStub implements IPayStub {
      *
      * @return pay
      */
-    public double getPay() {return pay;}
+    public double getPay() {
+        return pay;
+    }
 
     /**
      * get the paid taxes of the employee.
      *
      * @return taxesPaid
      */
-    public double getTaxesPaid() {return taxesPaid;}
+    public double getTaxesPaid() {
+        return taxesPaid;
+    }
 
     /**
      * Converts the PayStub object to a CSV string.
