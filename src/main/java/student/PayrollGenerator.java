@@ -80,27 +80,29 @@ public final class PayrollGenerator {
                             payStubs.add(payStub);
 
                             // update employees.csv
-                            String type = employee.getEmployeeType();
-                            double updatedYTDEarnings = employee.getYTDEarnings() + payStub.getPay();
-                            double updatedYTDTaxesPaid = employee.getYTDTaxesPaid() + payStub.getTaxesPaid();
-                            if (type.equals("HOURLY")) {
-                                employees.set(i, new HourlyEmployee(
-                                        employee.getName(),
-                                        employee.getID(),
-                                        employee.getPayRate(),
-                                        updatedYTDEarnings,
-                                        updatedYTDTaxesPaid,
-                                        employee.getPretaxDeductions()
-                                ));
-                            } else {
-                                employees.set(i, new SalaryEmployee(
-                                        employee.getName(),
-                                        employee.getID(),
-                                        employee.getPayRate(),
-                                        updatedYTDEarnings,
-                                        updatedYTDTaxesPaid,
-                                        employee.getPretaxDeductions()
-                                ));
+                            if (payStub != null) {
+                                double updatedYTDEarnings = employee.getYTDEarnings() + payStub.getPay();
+                                double updatedYTDTaxesPaid = employee.getYTDTaxesPaid() + payStub.getTaxesPaid();
+                                String type = employee.getEmployeeType();
+                                if (type.equals("HOURLY")) {
+                                    employees.set(i, new HourlyEmployee(
+                                            employee.getName(),
+                                            employee.getID(),
+                                            employee.getPayRate(),
+                                            updatedYTDEarnings,
+                                            updatedYTDTaxesPaid,
+                                            employee.getPretaxDeductions()
+                                    ));
+                                } else {
+                                    employees.set(i, new SalaryEmployee(
+                                            employee.getName(),
+                                            employee.getID(),
+                                            employee.getPayRate(),
+                                            updatedYTDEarnings,
+                                            updatedYTDTaxesPaid,
+                                            employee.getPretaxDeductions()
+                                    ));
+                                }
                             }
                         }
                     }
