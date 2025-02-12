@@ -26,7 +26,7 @@ public abstract class Employee implements IEmployee {
     private double pretaxDeductions;
 
     /** the tax rate.*/
-    private final static double TAXRATE = 0.2265;
+    private static double TAXRATE = 0.2265;
 
 
     /**
@@ -38,7 +38,8 @@ public abstract class Employee implements IEmployee {
      * @param ytdTaxesPaid employee's taxes paid ytd
      * @param pretaxDeductions employee's pretax deductions
      */
-    protected Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
+    protected Employee(String name, String id, double payRate,
+                       double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         this.name = name;
         this.id = id;
         this.payRate = payRate;
@@ -52,21 +53,27 @@ public abstract class Employee implements IEmployee {
      *
      * @return the name of the employee
      */
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     /**
      * Get the ID of the employee.
      *
      * @return the ID of the employee
      */
-    public String getID() { return id; }
+    public String getID() {
+        return id;
+    }
 
     /**
      * Gets the employee's pay rate.
      *
      * @return the pay rate of the employee
      */
-    public double getPayRate() { return payRate; }
+    public double getPayRate() {
+        return payRate;
+    }
 
 
     /**
@@ -79,21 +86,27 @@ public abstract class Employee implements IEmployee {
      *
      * @return the type of the employee as a string
      */
-    public String getEmployeeType() { return employeeType; }
+    public String getEmployeeType() {
+        return employeeType;
+    }
 
     /**
      * Gets the YTD earnings of the employee.
      *
      * @return the YTD earnings of the employee
      */
-    public double getYTDEarnings() { return ytdEarnings;}
+    public double getYTDEarnings() {
+        return ytdEarnings;
+    }
 
     /**
      * Gets the YTD taxes paid by the employee.
      *
      * @return the YTD taxes paid by the employee
      */
-    public double getYTDTaxesPaid() { return ytdTaxPaid;}
+    public double getYTDTaxesPaid() {
+        return ytdTaxPaid;
+    }
 
     /**
      * Gets pretax deductions for the employee. Yes, on a normal paycheck this varies as either set
@@ -103,7 +116,9 @@ public abstract class Employee implements IEmployee {
      *
      * @return the pretax deductions for the employee
      */
-    public double getPretaxDeductions() {return pretaxDeductions;}
+    public double getPretaxDeductions() {
+        return pretaxDeductions;
+    }
 
     /**
      * generate pay stub for employees.
@@ -123,7 +138,7 @@ public abstract class Employee implements IEmployee {
 
     /**
      * calculate the gross pay for employees.
-     * @param hoursWorked, hours worked
+     * @param hoursWorked hours worked
      * @return the gross pay
      */
     protected abstract double calculateGrossPay(double hoursWorked);

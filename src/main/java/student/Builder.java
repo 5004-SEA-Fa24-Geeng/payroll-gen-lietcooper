@@ -36,7 +36,9 @@ public final class Builder {
 
         // if any wrong double value input, return null
         for (int i = 3; i <= 6; i++) {
-            if (strToDouble(employee[i]) < 0) { return null; }
+            if (strToDouble(employee[i]) < 0) {
+                return null;
+            }
         }
 
         if (employee[0].equals("HOURLY")) {

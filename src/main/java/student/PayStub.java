@@ -3,7 +3,7 @@ package student;
 /**
  * A class for pay stub that implements IPayStub.
  */
-public class PayStub implements IPayStub{
+public class PayStub implements IPayStub {
     /** the name of the employee.*/
     private final String name;
 
@@ -14,10 +14,10 @@ public class PayStub implements IPayStub{
     private final double taxesPaid;
 
     /** the final employee's YTD earnings.*/
-    private final double YTDEarnings;
+    private final double ytdEarnings;
 
     /** the final employee's taxes paid YTD.*/
-    private final double YTDTaxPaid;
+    private final double ytdTaxPaid;
 
 
     /**
@@ -32,8 +32,8 @@ public class PayStub implements IPayStub{
         this.name = name;
         this.pay = pay;
         this.taxesPaid = taxesPaid;
-        this.YTDEarnings = YTDEarnings;
-        this.YTDTaxPaid = YTDTaxPaid;
+        this.ytdEarnings = YTDEarnings;
+        this.ytdTaxPaid = YTDTaxPaid;
     }
 
     /**
@@ -58,6 +58,6 @@ public class PayStub implements IPayStub{
      * @return the CSV string
      */
     public String toCSV() {return String.format(
-            "%s,%.2f,%.2f,%.2f,%.2f", name, pay, taxesPaid, YTDEarnings, YTDTaxPaid
+            "%s,%.2f,%.2f,%.2f,%.2f", name, pay, taxesPaid, ytdEarnings, ytdTaxPaid
     );}
 }
