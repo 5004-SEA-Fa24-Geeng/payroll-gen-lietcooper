@@ -8,10 +8,10 @@ public class HourlyEmployee extends Employee{
     private String employeeType = "HOURLY";
 
     /** the start hours of overtime.*/
-    protected static double OVERTIME = 40;
+    private static double overtime = 40;
 
-    /** the coefficient in calculating the pay for hourly employee*/
-    protected static double PAYCOEFFICIENT = 1.5;
+    /** the coefficient in calculating the pay for hourly employee.*/
+    private static double payCoefficient = 1.5;
 
 
     /**
@@ -23,7 +23,7 @@ public class HourlyEmployee extends Employee{
      * @param ytdTaxesPaid employee's taxes paid ytd
      * @param pretaxDeductions employee's pretax deductions
      */
-    public HourlyEmployee(String name, String id, double payRate,double ytdEarnings,
+    public HourlyEmployee(String name, String id, double payRate, double ytdEarnings,
                           double ytdTaxesPaid, double pretaxDeductions) {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
     }
@@ -44,7 +44,7 @@ public class HourlyEmployee extends Employee{
      * @return the gross pay
      */
     protected double calculateGrossPay(double hoursWorked) {
-        return (hoursWorked <= OVERTIME ?
-                getPayRate() * hoursWorked : getPayRate() * (PAYCOEFFICIENT * hoursWorked - 0.5 * OVERTIME));
+        return (hoursWorked <=overtime
+                ? getPayRate() * hoursWorked : getPayRate() * (payCoefficient * hoursWorked - 0.5 * overtime));
     }
 }

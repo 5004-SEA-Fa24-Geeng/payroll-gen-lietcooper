@@ -26,7 +26,7 @@ public abstract class Employee implements IEmployee {
     private double pretaxDeductions;
 
     /** the tax rate.*/
-    private static double TAXRATE = 0.2265;
+    private static double taxRate = 0.2265;
 
 
     /**
@@ -127,13 +127,15 @@ public abstract class Employee implements IEmployee {
      * @return the pay stub, or return null if hoursWorked < 0
      */
     public IPayStub runPayroll(double hoursWorked) {
-        if (hoursWorked < 0) return null;
+        if (hoursWorked < 0) {
+            return null;
+        }
 
         double grossPay = Builder.strToDouble(Double.toString(calculateGrossPay(hoursWorked)));
-        double tax = Builder.strToDouble(Double.toString((grossPay - getPretaxDeductions()) * TAXRATE));
+        double tax = Builder.strToDouble(Double.toString((grossPay - getPretaxDeductions()) * taxRate));
         double netPay = Builder.strToDouble(Double.toString(grossPay - tax - getPretaxDeductions()));
 
-        return new PayStub(getName(),netPay, tax,getYTDEarnings() + netPay, getYTDTaxesPaid() + tax);
+        return new PayStub(getName(), netPay, tax, getYTDEarnings() + netPay, getYTDTaxesPaid() + tax);
     }
 
     /**
@@ -156,8 +158,11 @@ public abstract class Employee implements IEmployee {
      *
      * @return the employee as a CSV string
      */
-    public String toCSV() {return String.format(
+    public String toCSV() {
+        return String.format(
             "%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
-            getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings(), getYTDTaxesPaid()
-        );}
+            getEmployeeType(), getName(), getID(), getPayRate(),
+            getPretaxDeductions(), getYTDEarnings(), getYTDTaxesPaid()
+        );
+    }
 }

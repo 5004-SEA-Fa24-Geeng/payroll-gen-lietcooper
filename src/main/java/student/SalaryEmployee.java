@@ -9,7 +9,7 @@ public class SalaryEmployee extends Employee{
     private String employeeType = "SALARY";
 
     /** division for the pay of the salary employees.*/
-    protected static double PAYDIVIDE = 24;
+    private static double payDivide = 24;
 
 
     /**
@@ -41,6 +41,6 @@ public class SalaryEmployee extends Employee{
      * @return the gross pay
      */
     protected double calculateGrossPay(double hoursWorked) {
-        return getPayRate() / PAYDIVIDE;
+        return getPayRate() / payDivide;
     }
 }

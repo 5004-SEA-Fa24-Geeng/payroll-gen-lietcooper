@@ -22,18 +22,18 @@ public class PayStub implements IPayStub {
 
     /**
      * Constructor for Pay Stub.
-     * @param name, employee's name
-     * @param pay, employee's pay
-     * @param taxesPaid, employee's taxes for the pay
-     * @param YTDEarnings, employee's YTD earnings
-     * @param YTDTaxPaid, employee's taxes paid YTD
+     * @param name employee's name
+     * @param pay employee's pay
+     * @param taxesPaid employee's taxes for the pay
+     * @param ytdEarnings employee's YTD earnings
+     * @param ytdTaxPaid employee's taxes paid YTD
      */
-    public PayStub(String name, double pay, double taxesPaid, double YTDEarnings, double YTDTaxPaid) {
+    public PayStub(String name, double pay, double taxesPaid, double ytdEarnings, double ytdTaxPaid) {
         this.name = name;
         this.pay = pay;
         this.taxesPaid = taxesPaid;
-        this.ytdEarnings = YTDEarnings;
-        this.ytdTaxPaid = YTDTaxPaid;
+        this.ytdEarnings = ytdEarnings;
+        this.ytdTaxPaid = ytdTaxPaid;
     }
 
     /**
@@ -61,7 +61,7 @@ public class PayStub implements IPayStub {
      *
      * @return the CSV string
      */
-    public String toCSV() {return String.format(
-            "%s,%.2f,%.2f,%.2f,%.2f", name, pay, taxesPaid, ytdEarnings, ytdTaxPaid
-    );}
+    public String toCSV() {
+        return String.format("%s,%.2f,%.2f,%.2f,%.2f", name, pay, taxesPaid, ytdEarnings, ytdTaxPaid);
+    }
 }
