@@ -33,6 +33,12 @@ public final class Builder {
         } catch (IllegalArgumentException e) {
             return null;
         }
+
+        // if any wrong double value input, return null
+        for (int i = 3; i <= 6; i++) {
+            if (strToDouble(employee[i]) < 0) return null;
+        }
+
         if (employee[0].equals("HOURLY")) {
             return new HourlyEmployee(employee[1], employee[2], strToDouble(employee[3]),
                     strToDouble(employee[5]), strToDouble(employee[6]), strToDouble(employee[4]));
@@ -44,7 +50,8 @@ public final class Builder {
         }
     }
 
-   /**
+
+    /**
      * Converts a TimeCard from a CSV String.
      * 
      * @param csv csv string
@@ -72,7 +79,7 @@ public final class Builder {
         try {
             Double.parseDouble(str);
         } catch(NumberFormatException e) {
-            System.err.println("The value is not a double!");
+            System.err.println("The value is not a double! Get -1.0 instead.");
             return -1.0;
         }
         BigDecimal bd = new BigDecimal(str).setScale(2, RoundingMode.HALF_UP);

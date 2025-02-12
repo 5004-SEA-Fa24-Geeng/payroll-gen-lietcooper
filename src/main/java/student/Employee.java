@@ -113,15 +113,11 @@ public abstract class Employee implements IEmployee {
     public IPayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) return null;
 
-        double grossPay = calculateGrossPay(hoursWorked);
-        double tax = (grossPay - getPretaxDeductions()) * taxRate;
-        double netPay = grossPay - tax - getPretaxDeductions();
+        double grossPay = Builder.strToDouble(Double.toString(calculateGrossPay(hoursWorked)));
+        double tax = Builder.strToDouble(Double.toString((grossPay - getPretaxDeductions()) * taxRate));
+        double netPay = Builder.strToDouble(Double.toString(grossPay - tax - getPretaxDeductions()));
 
-        double roundedTax = Builder.strToDouble(Double.toString(tax));
-        double roundedNetPay = Builder.strToDouble(Double.toString(netPay));
-
-        return new PayStub(getName(), roundedNetPay, roundedTax,
-                getYTDEarnings() + roundedNetPay, getYTDTaxesPaid() + roundedTax);
+        return new PayStub(getName(),netPay, tax,getYTDEarnings() + netPay, getYTDTaxesPaid() + tax);
     }
 
     /**
@@ -145,6 +141,7 @@ public abstract class Employee implements IEmployee {
      * @return the employee as a CSV string
      */
     public String toCSV() {return String.format(
-            "%s,%s,%s,%.2f,%.2f,%.2f,%.2f", employeeType, name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxPaid
+            "%s,%s,%s,%.2f,%.2f,%.2f,%.2f",
+            getEmployeeType(), getName(), getID(), getPayRate(), getPretaxDeductions(), getYTDEarnings(), getYTDTaxesPaid()
         );}
 }

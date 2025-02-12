@@ -13,8 +13,12 @@ Place your class diagram below. Make sure you check the fil in the browser on gi
 title:
 ---
 classDiagram
-    direction TB
-    PayrollGenerator
+    direction LR
+    PayrollGenerator --> Builder: use
+    PayrollGenerator --> FileUtil: use
+    PayrollGenerator --> IEmployee: use
+    PayrollGenerator --> ITimeCard: use
+    PayrollGenerator --> IPayStub: use
     IEmployee <|-- Employee: implements
     <<abstract>> Employee
     Employee <|-- SalaryEmployee: extends
@@ -25,12 +29,11 @@ classDiagram
     IPayStub <|-- PayStub: implements
     <<interface>> IPayStub
     
-
-
     class Builder {
         -Builder()
         +buildEmployeeFromCSV(String csv)$: IEmployee
         +buildTimeCardFromCSV(String csv)$: ITimeCard
+        +strToDouble(String str)$: double
     }
     class FileUtil {
         +String EMPLOYEE_HEADER$
@@ -62,11 +65,14 @@ classDiagram
         #double YTDEarnings
         #double YTDTaxPaid
         #double PretaxDeductions
+        #calculateGrossPay(double hoursWorked): double
  }
     class HourlyEmployee {
-        
+        -double OVERTIME$
     }
     class SalaryEmployee {
+        -double PAYDIVIDE$
+        -double PAYCOEFFICIENT$
         
     }
     class ITimeCard {
@@ -74,7 +80,8 @@ classDiagram
         getHoursWorked(): double
     }
     class TimeCard {
-        
+        -String EmployeeID
+        -double hoursWorked
     }
     class IPayStub {
         getPay(): double
@@ -82,7 +89,11 @@ classDiagram
         toCSV(): String
     }
     class PayStub {
-        
+        -String name
+        -double pay
+        -double taxesPaid
+        -double YTDEarnings
+        -double YTDTaxesPaid
     }
 ```
 
@@ -111,8 +122,14 @@ You should feel free to number your brainstorm.
 6. Test that the `Employee` class properly returns `pretaxDeductions` from `getPretacDeductions()`
 7. Test that the `Employee` class properly returns CSV String from `toCSV()`
 8. Test that the `TimeCard` class properly returns `employeeID` from `getEmPloyeeID()`
-9. Test that the `Employee` class properly returns `hoursWorked` from `getHoursWorked()`
-10. Test that the `PayStub` class properly returns `name` from `getName()`
+9. Test that the `TimeCard` class properly returns `hoursWorked` from `getHoursWorked()`
+10. Test that the `Employee` class properly generates `PayStub` with correct items.
+11. Test that the `PayStub` class properly construct.
+12. Test that the `PayStub` class properly return a csv string from `toCSV()`
+13. Test that the `Builder` class properly creates a `Employee` from `buildEmployeeFromCSV()`
+14. Test that the `Builder` class properly creates a `TimeCard` from `buildTimeCardFromCSV()`
+15. Test that the `Builder` class properly return `double` from a `String` from `strToDouble()`
+    
 
 
 ## (FINAL DESIGN): Class Diagram
@@ -132,3 +149,9 @@ Go through your completed code, and update your class diagram to reflect the fin
 > The value of reflective writing has been highly researched and documented within computer science, from learning new information to showing higher salaries in the workplace. For this next part, we encourage you to take time, and truly focus on your retrospective.
 
 Take time to reflect on how your design has changed. Write in *prose* (i.e. do not bullet point your answers - it matters in how our brain processes the information). Make sure to include what were some major changes, and why you made them. What did you learn from this process? What would you do differently next time? What was the most challenging part of this process? For most students, it will be a paragraph or two. 
+
+One of my major changes is to create an abstract class `EMpoyee` for `HourlyEmployee` and `SalaryEmployee` and implemented a helper method as suggested. Through it, I realized the felxibility and convenience
+of polymorphism to maintain and modify the functionality of classes. When we want to have several similar classes that shares some
+attributes and methods, we only need to implement differently some of them in the certain classes if we use an abstract class fot them to inherit.
+This is a good practice in OOP and I should keep using it. Then, instead of using BigDecimal to every double seperately, I wrote a static method `strToDouble(String str)` in `Builder`. It allows me to easily check the string before turning it to a double value without
+write complicated Double and BigDecimal syntax every time. By doing so I practiced to create tools for a certain purposes.

@@ -9,7 +9,7 @@ public class SalaryEmployee extends Employee{
     protected String employeeType = "SALARY";
 
     /** division for the pay of the salary employees.*/
-    private final static double PAYDIVIDE = 24;
+    protected final static double PAYDIVIDE = 24;
 
 
     /**
@@ -24,6 +24,12 @@ public class SalaryEmployee extends Employee{
     public SalaryEmployee(String name, String id, double payRate,double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
     }
+
+    /**
+     * get the employee type
+     * @return employeeType
+     */
+    public String getEmployeeType() {return employeeType;}
 
     /**
      * calculate the gross pay for salary employee.

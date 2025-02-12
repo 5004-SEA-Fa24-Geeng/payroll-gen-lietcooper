@@ -4,7 +4,7 @@ package student;
  * A class for hourly employees.
  */
 public class HourlyEmployee extends Employee{
-    /** set the emloyee type to HOURLY*/
+    /** set the employee type to HOURLY*/
     protected String employeeType = "HOURLY";
 
     /** the start hours of overtime.*/
@@ -26,6 +26,12 @@ public class HourlyEmployee extends Employee{
     public HourlyEmployee(String name, String id, double payRate,double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions) {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
     }
+
+    /**
+     * get the employee type
+     * @return employeeType
+     */
+    public String getEmployeeType() {return employeeType;}
 
     /**
      * Calculate the gross pay for hourly employee.
